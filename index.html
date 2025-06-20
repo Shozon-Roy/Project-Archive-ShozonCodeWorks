@@ -1,8 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
     <title>Project Archive - ShozonCodeWorks</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -11,820 +11,1646 @@
     <meta name="keywords" content="Frontend Development, Web Design, Shozon, Projects, Code Archive, Web Development, Portfolio, JavaScript, HTML, CSS">
     <meta name="author" content="Shozon">
     <link rel="icon" href="https://shozonroy.blogspot.com/favicon.ico?m=1" type="image/x-icon">
-    <style>
-        body {
-            background-color: rgb(20, 20, 20);
-            color: rgb(255, 255, 255);
-            font-family: 'Lato', sans-serif;
-            transition: background-color 0.5s;
-        }
-        .navbar-custom {
-            background-color: #1a1a1a; 
-            border-bottom: 2px solid rgb(255, 165, 0);
-            padding: 10px 20px;
-            transition: background-color 0.5s;
-        }
-        .navbar-custom .navbar-brand img {
-            height: 40px;
-            transition: height 0.5s;
-        }
-        .container {
-            margin-top: 30px;
-        }
-        .project-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .project-box {
-            background-color: rgb(30, 30, 30); 
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .project-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
-        }
-        .iframe-container {
-            width: 100%;
-            height: 200px;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: rgb(50, 50, 50); 
-            position: relative;
-        }
-        .title-container {
-            margin-top: 15px;
-        }
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: rgb(255, 165, 0);
-            margin-bottom: 5px;
-            transition: color 0.3s;
-        }
-        .project-title:hover {
-            color: rgb(255, 255, 255); 
-        }
-        .project-description {
-            font-size: 1rem;
-            color: rgb(220, 220, 220); 
-            margin-bottom: 15px;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
-            border-radius: 10px;
-        }
-        .overlay.active {
-            opacity: 1;
-        }
-        .eye-icon {
-            font-size: 2rem;
-            color: rgb(255, 69, 0); 
-            transition: color 0.3s, transform 0.3s;
-        }
-        .eye-icon:hover {
-            color: rgb(255, 255, 255); 
-            transform: scale(1.1);
-        }
-        .footer {
-            background-color: rgb(30, 30, 30); 
-            padding: 20px 0;
-            text-align: center;
-            color: rgb(220, 220, 220); 
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 30px;
-            transition: background-color 0.5s;
-        }
-        .footer .social-icons {
-            margin-top: 10px;
-        }
-        .footer .social-icons a {
-            margin: 0 15px;
-            color: rgb(255, 165, 0); 
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        .footer .social-icons a:hover {
-            color: rgb(255, 255, 255); 
-        }
-        #backToTop {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            z-index: 999;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #333;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 24px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s, border 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #backToTop:hover {
-            background-color: rgba(255, 255, 255, 1);
-            border: 2px solid rgba(255, 255, 255, 1);
-        }
-        .info-container {
-            display: flex;
-            align-items: center;
-            background-color: #1a1a1a;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-            padding: 15px;
-        }
-        .profile-pic {
-            width: 100px;
-            height: 100px;
-            background-image: url('https://i.postimg.cc/HLMMQ92J/IMG-20240925-000206-700.jpg'); 
-            background-size: cover;
-            background-position: center;
-            border-radius: 8px;
-        }
-        .divider {
-            width: 1px;
-            height: 80px;
-            background-color: #6c757d; 
-            margin: 0 20px;
-        }
-        .details {
-            flex-grow: 1;
-            color: #ffffff; 
-            margin-left: 10px; 
-        }
-        .name {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 8px; 
-        }
-        .email {
-            color: #adb5bd;
-            margin-bottom: 8px; 
-        }
-        .social-icons a {
-            margin-right: 15px; 
-            color: #007bff;
-        }
-        .social-icons a:hover {
-            color: #ffffff; 
-        }
-    </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts: Inter and Roboto Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #111;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 17px;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Navbar Styles */
+    .navbar-custom {
+      background: linear-gradient(45deg, rgba(20, 20, 20, 0.2) 0%, rgba(17, 17, 17, 0.7) 100%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+      height: 58px;
+      min-height: 58px;
+      max-height: 58px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.43);
+      z-index: 100;
+      padding: 0 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar-logo {
+      font-size: 1.23rem;
+      font-weight: bold;
+      color: rgba(255,255,255,0.94)!important;
+      letter-spacing: 0.7px;
+      text-shadow: 0 2px 12px rgba(255,255,255,0.04);
+      user-select: none;
+      font-family: "Inter", sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      line-height: 1.15;
+      z-index: 2;
+    }
+    .navbar-logo img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.07);
+      border: 1.2px solid rgba(255,255,255,0.13);
+      margin-right: 0.15rem;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.13);
+      display: block;
+    }
+    .navbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      z-index: 2;
+    }
+    .navbar-icons .bi {
+      font-size: 1.25rem;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.16s, background 0.16s;
+      border-radius: 4px;
+      padding: 9px 11px;
+      background: rgba(255,255,255,0.09);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      outline: none;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .navbar-icons .bi:hover, .navbar-icons .bi:focus {
+      color: #fff;
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* Profile Card Styles */
+    .profile-section-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px 0 0 0;
+      background: transparent;
+      box-sizing: border-box;
+    }
+    .profile-card {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      background: #171717;
+      border-radius: 5px;
+      padding: 18px 32px;
+      width: 100%;
+      max-width: 1100px;
+      color: white;
+      box-sizing: border-box;
+      align-items: center;
+      margin: 0 24px;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.19);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .profile-pic-wrapper {
+      flex-shrink: 0;
+      width: 96px;
+      height: 96px;
+      background-color: #142f8a;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-pic-wrapper img {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      position: relative;
+      z-index: 1;
+      box-shadow: none;
+      border: none;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Inter', Arial, sans-serif;
+      flex-grow: 1;
+      justify-content: center;
+      min-width: 0;
+    }
+    .name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.5rem;
+      line-height: 1.1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .verified-icon i {
+      color: #1e90ff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .role,
+    .email {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-top: 2px;
+      line-height: 1.3;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0.93;
+    }
+    .social-icons {
+      margin-top: 10px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.25rem;
+      letter-spacing: normal;
+      display: flex;
+      gap: 20px;
+      user-select: none;
+    }
+    .social-icons a {
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: normal !important;
+      transition: color 0.15s;
+    }
+    .social-icons a:hover {
+      color: #1e90ff;
+    }
+
+    /* Context Menu Styles */
+    .contextMenu {
+      --menu-border: rgba(255, 255, 255, 0.08);
+      --menu-bg: linear-gradient(45deg, rgba(20, 20, 20, 0.2) 0%, rgba(17, 17, 17, 0.7) 100%);
+      --item-color: #fff;
+      --item-bg: rgba(255, 255, 255, 0.1);
+      background: var(--menu-bg);
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      position: fixed;
+      top: 63px;
+      right: 10px;
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      z-index: 9999;
+      min-width: 175px;
+      max-width: 95vw;
+      border-radius: 8px;
+      box-shadow: 0 0 0 1px var(--menu-border), 0 2px 2px black;
+      animation: menuAnimation 0.4s 0s both;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      user-select: none;
+      outline: none;
+    }
+    .contextMenu-item {
+      padding: 4px;
+    }
+    .contextMenu-button {
+      width: 100%;
+      color: var(--item-color);
+      background: none;
+      border: 0;
+      white-space: nowrap;
+      border-radius: 4px;
+      padding: 7px 24px 7px 11px;
+      display: flex;
+      align-items: center;
+      font-family: "Inter", sans-serif;
+      cursor: pointer;
+      transition: background 0.13s;
+      font-size: 1.07rem;
+      animation: menuItemAnimation 0.2s 0s both;
+      gap: 0.5em;
+    }
+    .contextMenu-button:hover, .contextMenu-button:focus {
+      background-color: var(--item-bg);
+    }
+    .contextMenu .bi {
+      font-size: 1.2em;
+      margin-right: 8px;
+    }
+    .menu-popup-overlay {
+      position: fixed;
+      z-index: 9997;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: transparent;
+      display: none;
+    }
+    .menu-popup-overlay.show {
+      display: block;
+    }
+
+    /* Filter Bar Styles */
+    .filter-bar-container {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 50px 36px 0 36px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+    }
+    .filter-btn {
+      background: #191919;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.19), 0 1.5px 2px rgba(0,0,0,0.13);
+      padding: 15px 28px 11px 28px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      outline: none;
+      letter-spacing: 0.5px;
+      z-index: 15;
+      gap: 10px;
+      transition: none;
+      position: relative;
+    }
+    .filter-btn .bi {
+      font-size: 1.1rem;
+      color: #929292;
+      font-weight: 400;
+      margin-top: 2px;
+      transition: none;
+    }
+    .dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+      width: auto;
+    }
+    .filter-dropdown {
+      --menu-border: rgba(255, 255, 255, 0.12);
+      --menu-bg: linear-gradient(135deg, rgba(40, 44, 52, 0.85) 0%, rgba(25, 28, 35, 0.92) 100%);
+      --item-color: rgba(255, 255, 255, 0.95);
+      --item-bg: rgba(255, 255, 255, 0.08);
+      --item-hover-bg: rgba(255, 255, 255, 0.15);
+      background: var(--menu-bg);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      list-style: none;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      z-index: 9999;
+      min-width: 220px;
+      max-width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 0 0 1px var(--menu-border), 0 8px 32px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2);
+      animation: filterMenuAnimation 0.4s 0s both;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      user-select: none;
+      outline: none;
+      border: none;
+      margin-top: 0;
+      display: none;
+    }
+    .filter-dropdown.visible {
+      display: flex;
+    }
+    .filter-dropdown-list {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+    }
+    .filter-dropdown-list li {
+      list-style: none;
+      color: var(--item-color);
+      background: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 8px 16px;
+      border: none;
+      outline: none;
+      margin: 1px 0;
+      transition: all 0.15s ease;
+      position: relative;
+      min-width: 0;
+      word-break: break-word;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      animation: menuItemAnimation 0.2s 0s both;
+    }
+    .filter-dropdown-list li.selected {
+      background: var(--item-bg);
+      color: rgba(255, 255, 255, 1);
+      font-weight: 500;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .filter-dropdown-list li:hover {
+      background: var(--item-hover-bg);
+      color: rgba(255, 255, 255, 1);
+      transform: translateY(-1px);
+    }
+    .device-switch {
+      background: #181818;
+      border-radius: 5px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.21), 0 1.5px 2px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      padding: 2px;
+      gap: 0;
+      height: 46px;
+      margin-left: 20px;
+    }
+    .switch-tab {
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      background: transparent;
+      color: #404040;
+      font-size: 1.25rem;
+      width: 48px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: none;
+      margin: 0;
+      transition: none;
+      font-weight: 600;
+    }
+    .switch-tab.active {
+      background: #222;
+      color: #fff;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.13);
+    }
+
+    /* Product Grid & Card Styles */
+    .product-grid {
+      width: 100%;
+      margin-top: 48px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      padding: 0 20px;
+    }
+    .product-card {
+      background: #181b28;
+      border-radius: 5px;
+      box-shadow: 0 6px 40px 0 rgba(22,23,34,.59), 0 0.5px 1.5px 0 rgba(80,90,140,0.11);
+      width: 98%;
+      max-width: 720px;
+      min-width: 260px;
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(70,80,120,0.09);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: box-shadow 0.18s, width 0.3s, height 0.3s;
+    }
+    .product-card-bgimg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      transition: filter 0.22s;
+    }
+    .product-card-bottom-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 90px;
+      background: linear-gradient(180deg, rgba(38,34,66,0.08) 0%, rgba(38,34,66,0.25) 100%);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 32px;
+      padding-right: 24px;
+      box-sizing: border-box;
+      border-top: 1.5px solid rgba(255,255,255,0.08);
+      z-index: 2;
+      transition: background 0.18s, opacity 0.23s, transform 0.23s, backdrop-filter 0.22s;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(28px);
+    }
+    .product-card:hover .product-card-bottom-bar,
+    .product-card:focus-within .product-card-bottom-bar {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      background: linear-gradient(180deg, rgba(38,34,66,0.18) 0%, rgba(38,34,66,0.39) 100%);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+    }
+    .product-card-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 78%;
+      min-width: 0;
+    }
+    .product-card-title {
+      font-size: 1.18rem;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      margin: 0 0 4px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.13);
+      line-height: 1.18;
+      max-width: 100%;
+    }
+    .product-card-desc {
+      font-size: 0.94rem;
+      color: #bfc7e2;
+      font-weight: 400;
+      margin: 0;
+      opacity: 0.89;
+      white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      line-height: 1.22;
+    }
+    .product-card-link {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      background: none;
+      border-radius: 13px;
+      padding: 8px 4px 8px 4px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      transition: color 0.18s;
+      box-shadow: none;
+      border: none;
+      outline: none;
+    }
+    .product-card-link:hover, .product-card-link:focus {
+      color: #e1e5fa;
+      background: none;
+    }
+    .product-card-link i {
+      margin-left: 0;
+      font-size: 21px;
+      vertical-align: -2px;
+      opacity: 0.97;
+      line-height: 1;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* Load More Button */
+    .center-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+    .load-more-btn {
+      background: #181818;
+      color: #fff;
+      font-family: 'Inter';
+      font-weight: 600;
+      font-size: 1rem;
+      border: 1.2px solid #232323;
+      border-radius: 5px;
+      width: 130px;
+      height: 48px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.2s;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      outline: none;
+    }
+    .load-more-btn:hover:not(:disabled) {
+      background: #222;
+    }
+    .load-more-btn .spinner {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 22px;
+    }
+    .load-more-btn.loading .spinner {
+      display: block;
+      animation: fadein 0.2s;
+    }
+    .load-more-btn.loading .btn-text {
+      display: none;
+    }
+    .spinner svg {
+      width: 22px;
+      height: 22px;
+      stroke: #cacaca;
+      stroke-width: 3.2;
+      fill: none;
+      stroke-linecap: round;
+      animation: spin 0.85s linear infinite;
+    }
+
+    /* Animations */
+    @keyframes menuAnimation {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        border-radius: 8px;
+        transform: scale(1);
+      }
+    }
+    @keyframes menuItemAnimation {
+      0% {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes filterMenuAnimation {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        border-radius: 8px;
+        transform: scale(1);
+      }
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg);}
+    }
+
+    /* Project Archive Headline & Footer Styles */
+    .projectshowcase-headline {
+      margin: 80px 0 60px 0;
+      text-align: center;
+      user-select: none;
+    }
+    .projectshowcase-headline h1 {
+      margin: 0;
+      line-height: 1.07;
+      letter-spacing: 2px;
+      font-weight: 800;
+      font-style: bold;
+      font-size: 4.2rem;
+      text-transform: uppercase;
+      font-family: 'Fira Sans', 'Segoe UI', sans-serif;
+    }
+    .projectshowcase-headline .dark {
+      color: #323131;
+      display: block;
+      font-size: 3.8rem;
+      margin-top: -0.38em;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Fira Sans', 'Segoe UI', sans-serif;
+    }
+    .projectshowcase-headline .light {
+      color: #fff;
+      display: block;
+    }
+    /* Footer */
+    footer {
+      width: 100%;
+      background: #141211;
+      color: #aaaaaa;
+      text-align: center;
+      font-size: 1rem;
+      padding: 38px 0 25px;
+      border-top: 1px solid #232222;
+      letter-spacing: 0.02em;
+      margin-top: 40px;
+    }
+    .footer-row {
+      margin-bottom: 9px;
+    }
+    .footer-heart {
+      color: #f43b86;
+      font-size: 1.09em;
+      font-weight: bold;
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+    .footer-links {
+      margin-top: 6px;
+    }
+    .footer-link {
+      color: #e0e0e0;
+      text-decoration: none;
+      margin: 0 11px;
+      font-weight: 500;
+      transition: color .15s;
+      font-size: 1em;
+    }
+    .footer-link:hover,
+    .footer-link:focus {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .footer-copyright {
+      margin-top: 8px;
+      color: #555;
+      font-size: 0.97em;
+    }
+
+    /* Responsive Styles */
+    @media (min-width: 900px) {
+      .product-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 0 40px;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 48px auto 0 auto;
+      }
+      .product-card {
+        width: calc(50% - 10px);
+        max-width: 580px;
+        min-width: 320px;
+        height: 380px;
+      }
+    }
+    @media (max-width: 1100px) {
+      .profile-card {
+        max-width: 97vw;
+        padding: 14px 7vw;
+        margin: 0 10px;
+      }
+    }
+    @media (max-width: 900px) {
+      .filter-bar-container {
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .device-switch {
+        margin-top: 0;
+      }
+      .product-card {
+        width: calc(100vw - 40px);
+        min-width: 280px;
+        height: 280px;
+      }
+      .product-grid {
+        flex-direction: column;
+        gap: 24px;
+        padding: 0 20px;
+      }
+      .product-card-bottom-bar { height: 74px; }
+    }
+    @media (max-width: 700px) {
+      .profile-section-wrapper {
+        padding-top: 16px;
+      }
+      .profile-card {
+        padding: 12px 3vw;
+        gap: 20px;
+        margin: 0 2vw;
+      }
+      .profile-pic-wrapper {
+        width: 96px;
+        height: 96px;
+        border-radius: 8px;
+      }
+      .profile-pic-wrapper img {
+        width: 96px;
+        height: 96px;
+        border-radius: 8px;
+      }
+      .name-row {
+        font-size: 1.02rem;
+        gap: 4px;
+      }
+      .role, .email {
+        font-size: 0.92rem;
+      }
+      .social-icons {
+        font-size: 1rem;
+        gap: 20px;
+      }
+      .social-icons a {
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+      }
+      .contextMenu {
+        right: 10px !important;
+        top: 53px !important;
+        min-width: 70vw !important;
+        font-size: 0.97rem !important;
+      }
+    }
+    @media (max-width: 900px) {
+      .projectshowcase-headline h1 { font-size: 2.5rem; }
+      .projectshowcase-headline .dark { font-size: 2.2rem; }
+    }
+    @media (max-width: 600px) {
+      .filter-bar-container {
+        padding-left: 6px;
+        padding-right: 6px;
+        padding-top: 20px;
+        gap: 0;
+        flex-direction: row;
+        align-items: center;
+      }
+      .filter-btn {
+        font-size: 1rem;
+        padding: 8px 10px 6px 10px;
+        border-radius: 5px;
+      }
+      .dropdown-wrapper {
+        width: 100%;
+      }
+      .filter-dropdown {
+        min-width: 85vw;
+        max-width: 92vw;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        border-radius: 10px;
+        top: calc(100% + 10px);
+      }
+      .filter-dropdown-list li {
+        font-size: 0.98rem;
+        padding: 10px 16px;
+        border-radius: 6px;
+      }
+      .device-switch {
+        height: 36px;
+        border-radius: 5px;
+        margin-left: 10px;
+      }
+      .switch-tab {
+        font-size: 0.95rem;
+        width: 32px;
+        height: 30px;
+        border-radius: 5px;
+      }
+      .switch-tab .bi {
+        font-size: 1rem;
+      }
+      .product-card {
+        width: calc(100vw - 20px);
+        height: 260px;
+        margin: 0 auto;
+      }
+      .product-grid {
+        padding: 0 10px;
+      }
+      .product-card-bottom-bar { 
+        height: 64px; 
+        padding-left: 12px; 
+        padding-right: 8px;
+      }
+      .product-card-title { font-size: 0.96rem; }
+      .product-card-desc { font-size: 0.81em; }
+      .projectshowcase-headline h1 { font-size: 2.5rem; }
+      .projectshowcase-headline .dark { font-size: 2.2rem; }
+      footer { font-size: 0.97rem; }
+    }
+    @media (max-width: 430px) {
+      .projectshowcase-headline h1 { font-size: 2.05rem; }
+      .projectshowcase-headline .dark { font-size: 1.7rem; }
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <a class="navbar-brand" href="#">
-            <img src="https://i.postimg.cc/JhqyfKLt/20240602-155030.png" alt="Logo">
-        </a>
-        <div class="ml-auto">
-            <button class="btn btn-link text-white" id="menuToggle">
-               <i class="fas fa-user"></i>
-            </button>
-        </div>
-    </nav>
-   <div class="container">
-        <div class="info-container">
-            <div class="profile-pic"></div>
-            <div class="divider"></div>
-            <div class="details">
-                <div class="name">
-                    Shozon Roy <span class="text-success"><i class="fas fa-check-circle" title="Verified"></i></span>
-                </div>
-                <div class="email">devshozon999@gmail.com</div>
-               <div class="social-icons">
-                    <a href="https://www.facebook.com/shozon.roy2" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/shozon_roy" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://t.me/shozonroy2" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="https://github.com/Shozon-Roy" title="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar navbar-custom">
+    <span class="navbar-logo" id="navbarLogo">
+      <img src="https://i.postimg.cc/L85HPsYz/shozonroyimage.png" alt="Logo">
+      Project Archive
+    </span>
+    <div class="navbar-icons" id="navbarIcons">
+      <i class="bi bi-list" id="menuIcon" title="Menu"></i>
     </div>
+  </nav>
 
-    <section class="container">
-        <div class="project-container">
-            <div class="project-box" onclick="showOverlay(this)">
-                <div class="iframe-container">
-                     <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/2e96f8f6f8aa5533e1fac70eb8498bf694e761326906887cd71997a58d02dd44/png?url=https%3A%2F%2Fshozon-roy.github.io%2FBitly-Link-Shortner%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-                </div>
-                <div class="title-container">
-                    <span class="project-title">Bitly Link Shortner</span>
-                </div>
-                <p class="project-description">This is a simple web-based link Shortner using the Bitly API. Easily transform long URLs into short, manageable links in just one click.</p>
-                <div class="overlay">
-                    <a href="https://bitlyshortner.onrender.com/" class="eye-icon" target="_blank">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="project-box" onclick="showOverlay(this)">
-                <div class="iframe-container">
-                     <img src="https://camo.githubusercontent.com/bbe6d98144323faa6bd7ac86dd854b7e4387bb53881665650209820c0281eb3d/68747470733a2f2f692e706f7374696d672e63632f386368516235324e2f32303234313032342d3032333235382e6a7067" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-                </div>
-                <div class="title-container">
-                    <span class="project-title">Shozon Roy Portfolio</span>
-                </div>
-                <p class="project-description">The Shozon Roy Portfolio is a modern, stylish personal website showcasing Shozon Roy's skills, projects, and achievements. With a clean design and engaging user experience, it highlights work in web development, UI/UX design, and more. The responsive layout ensures the site looks great on all devices, featuring interactive elements, animations, and smooth transitions. It serves as an online resume and a platform to demonstrate Shozon's professional capabilities.</p>
-                <div class="overlay">
-                    <a href="https://shozon-roy-portfolio.onrender.com" class="eye-icon" target="_blank">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="project-box" onclick="showOverlay(this)">
-                <div class="iframe-container">
-                     <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/8b187bca09245a58a036a8fffb64ba1eee877b041b94d994ccb400057892588c/png?url=https%3A%2F%2Fshozon-roy.github.io%2FSpeedometer-Pro-Real-Time-Speed-Location-Tracker%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-                </div>
-                <div class="title-container">
-                    <span class="project-title">Speedometer Pro: Real-Time Speed & Location Tracker</span>
-                </div>
-                <p class="project-description">This project is a real-time speedometer design that checks the real-time speed of a device or vehicle. It also integrates real-time IP tracking and location data, providing a dynamic user experience. The design is implemented using HTML, CSS, JavaScript, Bootstrap, and Font Awesome icons for styling and functionality.</p>
-                <div class="overlay">
-                    <a href="https://shozon-roy.github.io/Speedometer-Pro-Real-Time-Speed-Location-Tracker/" class="eye-icon" target="_blank">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                </div>
-            </div>
-       
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/dd64edc6eeb27713af31be10919ba129ceadf0234e26213388a2fabeb383ebfd/png?url=https%3A%2F%2Fshozon-roy.github.io%2FTop-Nav-Product-Card-with-Functional-Search-Card%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Top Navigation Product Card With Search And Adding Functional UI</span>
-          </div>
-          <p class="project-description">This project features a premium user interface showcasing a top navigation bar, a functional search bar, and a grid of product cards. The design includes a responsive sidebar menu with a dark theme, a floating add button, and stylish product cards with discount badges, images, and pricing. This layout is ideal for modern e-commerce sites or any project needing a clean and attractive UI.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Top-Nav-Product-Card-with-Functional-Search-Card/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
+  <!-- Profile Section -->
+  <section class="profile-section-wrapper">
+    <div class="profile-card" role="region" aria-label="User profile card">
+      <div class="profile-pic-wrapper">
+        <img
+          src="https://i.postimg.cc/L85HPsYz/shozonroyimage.png"
+          alt="profile"
+          width="96"
+          height="96"
+        />
+      </div>
+      <div class="info">
+        <div class="name-row">
+          Shozon Roy
+          <div class="verified-icon" aria-label="Verified user">
+            <i class="bi bi-patch-check-fill" aria-hidden="true"></i>
           </div>
         </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/fbe9cf2bb454d1a292b77da52c558821ee4a0cb2748e9ebe196a3b9f2cd863e0/png?url=https%3A%2F%2Fshozon-roy.github.io%2FMatrix-Rain-Sidebar-Browser-System-Info%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Matrix Rain Sidebar Browser & System Info</span>
-          </div>
-          <p class="project-description">The Matrix Rain Sidebar Browser & System Info is a modern web application featuring a full-screen matrix rain effect with a sleek dark-themed sidebar. It provides an interactive sidebar with system information, user profile details, and social media links. The matrix rain effect adds a visually striking touch, while the sidebar provides essential information and functionality.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Matrix-Rain-Sidebar-Browser-System-Info/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/0dbdeb536e148c90ef7ff40c3ab2daa81674f0a7bc8e71301192839d0e68c5d6/png?url=https%3A%2F%2Fshozon-roy.github.io%2FProfile-Card-Ui%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Profile Card Ui- About me</span>
-          </div>
-          <p class="project-description">This is a test project about and profile cart made with html css js bootstrap font awesome icon and a sci fi style button ui.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Profile-Card-Ui/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/788fcf69f6bb18d1b1fe3fbf947695d96ddbd2a917c62ace112b4ff88f81a5e5/png?url=https%3A%2F%2Fshozon-roy.github.io%2FGithub-Profile-Viewer%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">GitHub Profile Viewer</span>
-          </div>
-          <p class="project-description">This project is a simple web application that allows users to view GitHub profiles by entering a username. The application fetches the user's profile details and repositories from the GitHub API and dynamically displays them on the page.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Github-Profile-Viewer/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/3e204cb08e3469d9381b8f5cbd808bcfb48f3ffc8990b80b5e26cefb1a675632/png?url=https%3A%2F%2Fshozon-roy.github.io%2FDrag-and-drop-file-uploader%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Drag and Drop File Uploader</span>
-          </div>
-          <p class="project-description">This project is a simple and intuitive drag and drop file uploader built using HTML, CSS, and JavaScript. It allows users to easily upload files by dragging them into a designated area or by browsing their local filesystem. The uploaded files are displayed in a list with their names and types, and users can remove files from the list if needed.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Drag-and-drop-file-uploader/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/db1ee7900a1655590d8a316a523cc5f700835fc059e02e2a2ed46df903ec0da8/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRandom-Gradient-Generator%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Random Gradient Generator</span>
-          </div>
-          <p class="project-description">This web application generates random gradients using HTML, CSS, and JavaScript. It allows users to copy the generated CSS code for the gradient.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Random-Gradient-Generator/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/ed9543c01399cf29322f4f181b29324686f49462eae411324f814c1635055c70/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRoyFlix_movie_finder&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">RoyFlix Movie Finder Website</span>
-          </div>
-          <p class="project-description">This project is a movie finder website that allows users to search for movies and view details about each movie.Search for movies by name.Display movie details such as title, plot,poster image, and ratings.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/RoyFlix_movie_finder/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/68659c88acbaa950ca3355b48a06555c81db6d76628cd41e2a3a674b9dcce088/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcar-animation-remasterd%2F&width=1440&height=924&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Car Animation Remastered</span>
-          </div>
-          <p class="project-description">This project os a car animation with svg path built with html css js jquery. </p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/car-animation-remasterd/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/a93a87520b504eacb705995dacb340071ea2ffa47a9bd15fe6dc1f78dc58934c/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fportfolio-short-dev-account-view-main%2F&width=1440&height=924&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Shozon Roy - Developer Profile</span>
-          </div>
-          <p class="project-description">This repository contains the code for Shozon Roy's developer profile, showcasing expertise in software development, web design, and innovative solutions.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/portfolio-short-dev-account-view-main/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/df050000075a1041ca03579e9ac096f780d8d58775d80e439279a5ca4f114f8c/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftodo_app_v1%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">To-Do App With Html Css Js</span>
-          </div>
-          <p class="project-description">This project is a simple To-Do application built using HTML, CSS, and JavaScript. It allows users to create and manage tasks easily.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/todo_app_v1/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/8754d1bcfb8963171bb4663c71bad8e0cf6b30cbe734034719939f9523fe2c9a/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcode-policy-usage-auth-main%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Code Usage Authorization Notice</span>
-          </div>
-          <p class="project-description">This is a simple HTML document with CSS styles, providing a notice about code authorization. It includes copyright information and instructions for requesting permission to use the code.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/code-policy-usage-auth-main/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/fd15c43655f3e01ab2dfc3f03d69ebf3e8ff94be5d38380cd19c78e3a631d5d3/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fqr-code-genaretor%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Qr Code Generator</span>
-          </div>
-          <p class="project-description">This is a web application that generates QR codes from user-provided text or links. It's built with HTML, CSS, and JavaScript</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/qr-code-genaretor/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/2a103d06a415b6994a1e8fcdc90cdb7d9914537f151514f2cfa221828f8451a7/png?url=https%3A%2F%2Fshozon-roy.github.io%2FAi-Real-Time-Prank-Weather-Project%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Ai Real-Time Prank Weather Project</span>
-          </div>
-          <p class="project-description">This project is a prank weather forecast application that mimics a real-time weather forecast but provides humorous and nonsensical responses instead.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Ai-Real-Time-Prank-Weather-Project/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/a9ac6c5608c47c004a51438aee15c79ba2491ce80e333fef28ea615834e9f618/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftemporary-email-genaretor%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Temporary Email Generator</span>
-          </div>
-          <p class="project-description">This is a simple web application that allows users to generate temporary email addresses for temporary use. Temporary email addresses can be useful for various purposes, such as signing up for online services without providing a personal email address, avoiding spam, or testing email functionality in applications.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/temporary-email-genaretor/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/4a53677e75e0654cbf2252dcaa8577b7c7c68d99765e5ffbb24e3a942ace92dd/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftest-contact-form%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Test Of an Contact Form</span>
-          </div>
-          <p class="project-description">This is a test project of an html css js php contact form.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/test-contact-form/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/92c97d06ee0f288f2a6c7a36759c56afa4fff5b6cb7bccaa00f196002192a717/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fpersonal-portfolio-v2%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Personal Portfolio v2</span>
-          </div>
-          <p class="project-description">Personal Portfolio v2 is a modern and responsive web application designed to showcase an individual’s skills, projects, and professional journey. Built with a combination of HTML, CSS, and JavaScript, this portfolio leverages the power of Bootstrap for responsive design and jQuery for dynamic interactions. Font Awesome icons enhance the visual appeal, making the interface both intuitive and engaging.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/personal-portfolio-v2/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/8cc8a4985e8eb3fab8903f377ce652e82590c71064810145499e59bbd6a43770/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fneon-404-error-page%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Neon 404 Error Page</span>
-          </div>
-          <p class="project-description">The Neon 404 Error Page is a visually striking web page designed to inform users that the requested content could not be found. This page combines vibrant neon colors and modern design elements, making it engaging while delivering an important message. Built with HTML, CSS, JavaScript, Bootstrap, jQuery, and Font Awesome icons, this page enhances the user experience even in the face of an error.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/neon-404-error-page/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/1c4cb899c14333e9d00676c26a6c06330bf9a38d7cdd61bc602d9e5760c2b769/png?url=https%3A%2F%2Fshozon-roy.github.io%2FAdmin-Dashord-Panel%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Admin Dashboard Panel</span>
-          </div>
-          <p class="project-description">The Admin Dashboard Panel is a powerful web application designed for managing and monitoring various aspects of a system or business. Built using HTML, CSS, JavaScript, Bootstrap, jQuery, and Font Awesome icons, this panel provides a user-friendly interface that enhances administrative tasks. It is optimized for responsiveness and accessibility, making it suitable for desktops, tablets, and mobile devices.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Admin-Dashord-Panel/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/dbaa8d8ae36f7f45e219b2155a9e05826ab23f111f13ec53706b2fbcb498d0cd/png?url=https%3A%2F%2Fshozon-roy.github.io%2FHidden-Searcher%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Hidden-Searcher: A Comprehensive Search Tool</span>
-          </div>
-          <p class="project-description">Hidden-Searcher is a web application designed to simplify online searches while enhancing user privacy. Built with HTML, CSS, JavaScript, Bootstrap, and jQuery, it offers a clean and responsive user interface. The application allows users to conduct searches without tracking their activity, ensuring a more secure browsing experience.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Hidden-Searcher/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/c7a73d9426b55d27a7d7b8b09342e803506d8c8789367cd5a9914429af280797/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcalculator-v2%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Web Calculator v2 </span>
-          </div>
-          <p class="project-description">Web Calculator v2 is an intuitive and responsive calculator application built with HTML, CSS, JavaScript, and Bootstrap. This modern tool features a sleek user interface, enhanced with Font Awesome icons for easy navigation and usability.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/calculator-v2/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/ce18ae9332b20f08a8fce79ac9f693ae6481fa7a0c1e06f2c16e1e97ff4c71a8/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fanalog-clock%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Simple Analog Clock</span>
-          </div>
-          <p class="project-description">This project showcases a simple analog clock built using HTML, CSS, and JavaScript, enhanced with Bootstrap for responsive design and jQuery for interactive features. The clock's face is styled with CSS, while Font Awesome icons represent the clock hands, creating a visually appealing display.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/analog-clock/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-      
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/2b8b2eb0e858ba06ec51cac8f71b8946b835312751c0e3bd680d340e9487e198/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fshozonroy%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Portfolio Card Design </span>
-          </div>
-          <p class="project-description">The portfolio card is a sleek and interactive component designed using HTML, CSS, JavaScript, Bootstrap, jQuery, and Font Awesome icons. It showcases individual projects or works in a visually appealing way.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/shozonroy/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/1a45966a177989c9b82b11be2c1a64f6d5b7711b1dd9dfb130975e02755ff2ab/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fage-calculator%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Age Calculator</span>
-          </div>
-          <p class="project-description">The Age Calculator is a simple web application built using HTML, CSS, JavaScript, and Bootstrap. This tool allows users to quickly calculate their age based on their birth date.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/age-calculator/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/f2a626e25592297b08cc4f6ee0189d31f1585dd5a5cef4f01d1d3f2d4e01268a/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcalulator-web-app%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Calculator UI</span>
-          </div>
-          <p class="project-description">The Calculator UI is a simple and interactive web application built using HTML, CSS, JavaScript, and Bootstrap. It features a clean and modern design that ensures ease of use. The layout includes a display area for showing calculations and a keypad with buttons for numbers and operations.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/calulator-web-app/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/c2b2f9fed1480adcdd4550c82a2c68e6de143b1136485578b5a034badf23922f/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftic-tac-toe-game%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Tic Tac Toe Game</span>
-          </div>
-          <p class="project-description">This Tic Tac Toe game is a simple yet engaging web application built using HTML, CSS, JavaScript, and Bootstrap. The game features a responsive design that adjusts seamlessly to various screen sizes, providing an intuitive user experience. Players can easily take turns by clicking on the grid to place their X or O markers. The game logic is implemented in JavaScript, ensuring real-time updates and determining the winner or a draw after each turn. With its clean interface and interactive elements, this Tic Tac Toe game is perfect for both casual players and those looking to explore basic game development concepts.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/tic-tac-toe-game/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/eae8b72783d4e3a6cca14b8ca76d727f85757d7eeb464c59f97824407bca4ec1/png?url=https%3A%2F%2Fshozon-roy.github.io%2FNETFLIX-LOGO%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Netflix Logo Made with HTML, CSS, JS, and Bootstrap</span>
-          </div>
-          <p class="project-description">This project showcases a dynamic representation of the Netflix logo, created using HTML, CSS, JavaScript, and Bootstrap. The logo features the iconic red "N" against a black background, symbolizing Netflix's commitment to delivering high-quality entertainment.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/NETFLIX-LOGO/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/872e53912719b03420e6fccb036ecd6f2dc133d03b5210922f0a4289d851764d/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRandom-Number-Generator2%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Random Number Generator</span>
-          </div>
-          <p class="project-description">This Random Number Generator is a simple web application built using HTML, CSS, JavaScript, and Bootstrap. The app allows users to generate a random number within a specified range with the click of a button.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Random-Number-Generator2/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-   
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/70e9e95337a09d0f2508c4ee3718387353cbfbc94b82f61f8c5f134ee94a4514/png?url=https%3A%2F%2Fshozon-roy.github.io%2FText-to-Ascii-Converter%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Basic Text to Binary Converter</span>
-          </div>
-          <p class="project-description">This project is a simple yet effective Text to Binary Converter built using HTML, CSS, JavaScript, and Bootstrap. It allows users to input text and instantly see its binary representation. The user-friendly interface, styled with Bootstrap, ensures a responsive design that works seamlessly across devices.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Text-to-Ascii-Converter/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/fa24fcbb3a4abc5db1664df601715f71aa4e1c9a0fa7344eb836de4479699160/png?url=https%3A%2F%2Fshozon-roy.github.io%2FVirtual-Keyboard-re-design%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Neuromorphism Keyboard UI</span>
-          </div>
-          <p class="project-description">The Neuromorphism Keyboard UI is a visually appealing interface designed using HTML, CSS, JavaScript, and Bootstrap. This modern design style mimics the soft, tactile feel of physical objects, creating a three-dimensional effect through subtle shadows and highlights.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Virtual-Keyboard-re-design/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/b25a1b0b08194014114da14b063ce11f834de80f021d38455d6fcc857e1553b5/png?url=https%3A%2F%2Fshozon-roy.github.io%2FToken_Genaretor%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Token Generator</span>
-          </div>
-          <p class="project-description">The Token Generator is a lightweight web application built with HTML, CSS, JavaScript, and Bootstrap that allows users to create secure tokens for various purposes, such as authentication and data encryption. The intuitive user interface, designed with Bootstrap, ensures a responsive and user-friendly experience across devices.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Token_Genaretor/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-   
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/30988e3cb63091adcb3307d48e0705fcddadfa9efe13758fa5f6dd4fdc7265f6/png?url=https%3A%2F%2Fshozon-roy.github.io%2FMatrix_animation%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Matrix Rain Effect Using HTML, CSS, JavaScript, and Bootstrap</span>
-          </div>
-          <p class="project-description">The Matrix Rain effect is a visually captivating animation that mimics the iconic falling green characters from the "Matrix" movie franchise. This effect can be achieved using HTML for structure, CSS for styling, and JavaScript for animation, along with Bootstrap for responsive design and layout enhancements.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Matrix_animation/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/7015a7012ce14f6fca1599045f12cea6a04468290b6fc4359b95354e54c03fe5/png?url=https%3A%2F%2Fshozon-roy.github.io%2FSignUpForm%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Sign-Up Form Made with HTML, CSS</span>
-          </div>
-          <p class="project-description">This sign-up form is a user-friendly interface designed using HTML, CSS. It allows users to easily create an account by entering their personal information, such as name, email, and password</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/SignUpForm/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/7045763505bf9375c33c6abde0f55a0c1b517ec37558a4c3ea382d282967bcef/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRandom-Number-Generator%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Random 1 to 999 Number Picker</span>
-          </div>
-          <p class="project-description">The 1 to 999 Number Picker is a user-friendly interface created with HTML, CSS, JavaScript, and Bootstrap. This component allows users to select a number within the range of 1 to 999 seamlessly.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/Random-Number-Generator/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/7ee2b84d1b4ccdbd05dc1f56ca212be20ad9bc7f7decb7f8ca4b02a167f1cc7b/png?url=https%3A%2F%2Fshozon-roy.github.io%2FERROR%2F&width=1440&height=1024&hide_cookie_banners=true" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">Basic 404 Page</span>
-          </div>
-          <p class="project-description">A basic 404 page created with HTML, CSS, JavaScript, and Bootstrap provides a user-friendly experience when a requested page cannot be found. The layout typically features a clean and simple design, utilizing Bootstrap's grid system for responsive behavior across devices.</p>
-          <div class="overlay">
-              <a href="https://shozon-roy.github.io/ERROR/" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-     <!-- Added New Project Here Shozon Roy 
-       <div class="project-box" onclick="showOverlay(this)">
-          <div class="iframe-container">
-              <img src="https://via.placeholder.com/600x400" alt="Placeholder Image" width="100%" height="100%" style="object-fit: cover;">
-          </div>
-          <div class="title-container">
-              <span class="project-title">#</span>
-          </div>
-          <p class="project-description">#</p>
-          <div class="overlay">
-              <a href="#" class="eye-icon" target="_blank">
-                  <i class="fas fa-eye"></i>
-              </a>
-          </div>
-        </div>
-   
--->
-           
-        </div>
-    </section>
+        <div class="role">Frontend Developer &amp; UI/UX Designer</div>
+        <div class="email">devshozon999@gmail.com</div>
+        <nav class="social-icons" aria-label="Social media links">
+          <a href="https://www.facebook.com/shozon.roy2" target="_blank" rel="noopener" aria-label="Facebook" class="facebook">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/shozon_roy" target="_blank" rel="noopener" aria-label="Instagram" class="instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://t.me/shozonroy2" target="_blank" rel="noopener" aria-label="Telegram" class="telegram">
+            <i class="bi bi-telegram"></i>
+          </a>
+          <a href="https://github.com/shozon-roy" target="_blank" rel="noopener" aria-label="GitHub" class="github">
+            <i class="bi bi-github"></i>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
 
-    <button id="backToTop" title="Go to top">
-        <i class="fas fa-chevron-up"></i>
+  <!-- Filter Bar -->
+  <div class="filter-bar-container">
+    <div class="dropdown-wrapper">
+      <button class="filter-btn" id="filterBtn">
+        Filter <i class="bi bi-chevron-down"></i>
+      </button>
+      <div class="filter-dropdown" id="filterDropdown">
+        <ul class="filter-dropdown-list" id="filterList">
+          <li class="selected">All</li>
+          <li>Software</li>
+          <li>Personal</li>
+          <li>Agency</li>
+          <li>Commerce</li>
+          <li>Downloader</li>
+          <li>AI</li>
+          <li>Web3</li>
+          <li>Hardware</li>
+          <li>Education</li>
+          <li>Encryption</li>
+          <li>Culture</li>
+        </ul>
+      </div>
+    </div>
+    <div class="device-switch" id="deviceSwitch">
+      <button class="switch-tab active" id="tabPhone" aria-label="Android"><i class="bi bi-phone"></i></button>
+      <button class="switch-tab" id="tabDesktop" aria-label="Desktop"><i class="bi bi-display"></i></button>
+    </div>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="product-grid">
+    <!-- Products will be dynamically loaded here -->
+  </div>
+
+  <!-- Load More Button -->
+  <div class="center-container">
+    <button class="load-more-btn" id="loadMoreBtn">
+      <span class="btn-text">Load More</span>
+      <span class="spinner">
+        <svg viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="13" stroke-opacity="0.15"/>
+          <circle cx="25" cy="25" r="13" stroke-dasharray="70" stroke-dashoffset="20"/>
+        </svg>
+      </span>
     </button>
+  </div>
 
-    <footer class="footer">
-        <p>&copy; Shozon Roy. All rights reserved.</p>
-      <p>
-        Have any questions or need support? contact our developer.
-        <a href="mailto:devshozon999@gmail.com" style="color: #ffcc00; text-decoration: none; font-weight: bold;">Reach Out</a>
-    </p>
-         <div class="social-icons">
-            <a href="https://www.facebook.com/shozon.roy2" target="_blank">
-                <i class="fab fa-facebook-f"></i>
+  <!-- ProjectShowcase Headline Section -->
+  <section class="projectshowcase-headline">
+    <h1>
+      <span class="light">PROJECT</span>
+      <span class="dark">ARCHIVE</span>
+    </h1>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-row">
+        <a class="navbar-brand" href="#">
+            <img src="https://i.postimg.cc/JhqyfKLt/20240602-155030.png" alt="navLogo" height="40px">
+        </a> <br />
+      Made with <span class="footer-heart">💖</span>  <a href="mailto:devshozon999@gmail.com" style="color: #1f4ef2; text-decoration: none; font-weight: bold;"> By Shozon Roy  </a>
+    </div>
+    
+    <div class="footer-links">
+      <a class="footer-link" href="#">Privacy Policy</a> |
+      <a class="footer-link" href="#">Terms of Use</a>
+    </div>
+    <div class="footer-copyright">
+      &copy; <span id="copyright-year"></span> Project Archive. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Overlay for closing the menu -->
+  <div class="menu-popup-overlay" id="menuPopupOverlay"></div>
+  <!-- Glass Effect Context Menu Popup -->
+  <ul class="contextMenu" id="contextMenu" tabindex="-1" style="display: none;">
+    <li class="contextMenu-item">
+      <button class="contextMenu-button"><i class="bi bi-house-door"></i> Home</button>
+    </li>
+    <li class="contextMenu-item">
+      <button class="contextMenu-button"><i class="bi bi-images"></i> Gallery</button>
+    </li>
+    <li class="contextMenu-item">
+      <button class="contextMenu-button"><i class="bi bi-person"></i> About Me</button>
+    </li>
+    <li class="contextMenu-item">
+      <button class="contextMenu-button"><i class="bi bi-github"></i> GitHub</button>
+    </li>
+    <li class="contextMenu-item">
+      <button class="contextMenu-button"><i class="bi bi-gear"></i> Settings</button>
+    </li>
+    <li class="contextMenu-item">
+      <button class="contextMenu-button"><i class="bi bi-box-arrow-right"></i> Logout</button>
+    </li>
+  </ul>
+
+  <script>
+    // --- PRODUCT DATA ---
+    const allProducts = [
+      {
+        title: "Tip Calculator",
+        description: "Tip Calculator is a beautifully designed, modern tip calculator web app. Instantly calculate tips, split bills with friends, and customize tip percentages—all in a sleek, responsive UI with dark/light mode support. ",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/TipCalculator/refs/heads/main/20250608_224456.jpg",
+        link: "https://roytipcalculator.vercel.app/",
+        category: "Calculator"
+      },
+      {
+        title: "QR & Barcode Scanner/Generator",
+        description: "A mobile-friendly QR code and barcode scanning/generating application with advanced theming and user experience features",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/QR-Barcode-Scanner/refs/heads/main/20250522_223134.jpg",
+        link: "#",
+        category: "Generator"
+      },
+      {
+        title: "MORSELAB",
+        description: "MORSELAB is a pixel-perfect, mobile-first Morse code learning app designed for the web. With a stunning, app-like splash screen and a responsive, interactive home page, users can study Morse code, track their progress, and enjoy a seamless experience that mirrors native mobile UI.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/MORSELAB-Mobile-Web-App-Ui/refs/heads/main/20250523_151820.jpg",
+        link: "https://webappmorselab.vercel.app/",
+        category: "Encryption"
+      },
+      {
+        title: "RoyEncoder - HTML Encryptor Tool",
+        description: "RoyEncoder is a powerful and user-friendly HTML encryption tool that allows developers to obfuscate their HTML code securely.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/RoyEncoder/refs/heads/main/20250429_005636.jpg",
+        link: "https://royencoder.vercel.app/",
+        category: "Encryption"
+      },
+      {
+        title: "One Downloader - All In One Video Downloader",
+        description: "A modern web application that allows users to download videos and images from various social media platforms in one place.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/OneDownloader/refs/heads/main/preview_20250412_151235.jpg",
+        link: "https://onedownload.vercel.app/",
+        category: "Downloader"
+      },
+      {
+        title: "Penafort - Groceries Supermarket",
+        description: "Penafort - Groceries is e-commerce Supermarket website with green and white color combination and complete online shop functionality ",
+        image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/cd383f4c7569f6032549b370bd7938ff8b2f9ead4f7e3d598774c485bdb75c45/png?url=https%3A%2F%2Fpenafort.vercel.app%2F&width=1440&height=824&hide_cookie_banners=true",
+        link: "https://penafort.vercel.app/",
+        category: "Grocery Store"
+      },
+      {
+        title: "Storm Editor - AI-Powered Code Editor",
+        description: "A modern, AI-powered code editor built with Monaco Editor and Gemini 1.5 Pro. Features a sleek UI similar to Windsurf and Cursor, with context-aware AI assistance.",
+        image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/7c7267eddf06700771687c6278cfb3469c711fbcfac101cfa9285840801697a7/png?url=https%3A%2F%2Fstormeditor.vercel.app%2F&width=1440&height=824&hide_cookie_banners=true",
+        link: "https://stormeditor.vercel.app/",
+        category: "AI Code Editor"
+      },
+      {
+        title: "Clippy - Screen Recording and Sharing Platform",
+        description: "Clippy is a modern web application for recording, sharing, and collaborating on screen recordings. With a clean, intuitive interface and powerful features, Clippy makes it easy to create and share high-quality screen recordings with your team.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/clippy/refs/heads/main/2b3cc1dc-a61d-4115-a2ec-705c98370e89.png",
+        link: "#",
+        category: "AI"
+      },
+      {
+        title: "SnapLite - Facebook Video Downloader",
+        description: "SnapLite is a powerful web application that allows users to download Facebook videos effortlessly.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/SnapLite/refs/heads/main/preview_20250401_221217.jpg",
+        link: "https://snaplite.onrender.com/",
+        category: "Downloader"
+      },
+      {
+        title: "Image2PDF Converter",
+        description: "Image to PDF Converter - A web-based tool that allows users to convert multiple images into a single PDF document with professional formatting and customization options.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/image2pdf/refs/heads/main/preview_20250328_050930.jpg",
+        link: "https://imagetopdfconvert.onrender.com/",
+        category: "Converter"
+      },
+      {
+        title: "AnimeVibe",
+        description: "AnimeVibe is a feature-rich anime streaming website where users can watch and stream their favorite anime. Built with modern technologies, AnimeVibe offers a clean, responsive interface with high-quality streaming.",
+        image: "https://camo.githubusercontent.com/92dfb6889b26c6b45ee7aa5eb63202a119e19d38e9f6150f9125d5bf5c269b2f/68747470733a2f2f692e706f7374696d672e63632f4d473939684c72512f32303234313231372d3134333634392e6a7067",
+        link: "https://animevibetv.onrender.com/",
+        category: "Anime Stream"
+      },
+      {
+        title: "Gradientify - Mesh Gradient Generator",
+        description: "Gradientify - Mesh Gradient Generator is a tool for creating complex gradients for your web projects. It allows you to generate beautiful gradients, ideal for web design, presentations, and social media projects.",
+        image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/a83c7c2f1530f76b633c6dd6508e91fbf0597ceb2d7717c92b595cf472baf246/png?url=https%3A%2F%2Fshozon-roy.github.io%2FMesh-Gradient-Generator%2F&width=1440&height=924&hide_cookie_banners=true",
+        link: "https://shozon-roy.github.io/Mesh-Gradient-Generator/",
+        category: "AI"
+      },
+      {
+        title: "Lost in the Depths",
+        description: "Lost in the Depths Its a 3js Web Portfolio With Mini Game Olayable in Android and Web Browser !",
+        image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/d664c4cb4e62df2dff507c10bb73d888e95a78ac1d20bdd11e9e1b7f97b79400/png?url=https%3A%2F%2Flostinthedepths.vercel.app%2F&width=1440&height=824&hide_cookie_banners=true",
+        link: "https://lostinthedepths.vercel.app/",
+        category: "Personal"
+      },
+      {
+        title: "Future Horizons - Waitlister Template",
+        description: "Future Horizons - Waitlister is not just a template, but a glimpse into the future, allowing you to bring your users along on your journey with ease and style",
+        image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/a93bb7dd05752eb0a1e14bfd6422934207c2e588f0e42011752ebd253b2a7b1f/png?url=https%3A%2F%2Fshozon-roy.github.io%2FFuture-Horizons-Waitlister%2F&width=1440&height=824&hide_cookie_banners=true",
+        link: "https://shozon-roy.github.io/Future-Horizons-Waitlister/",
+        category: "Template"
+      },
+      {
+        title: "TextSnap",
+        description: "TextSnap makes it easy to generate unique, high-quality text-based images. Perfect for social media, marketing, and graphic design!",
+        image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/66acd1190ee698cbc238c9e7972bf771038392bc9313575351d1f327a175a76a/png?url=https%3A%2F%2Fshozon-roy.github.io%2FText-Snap%2F&width=1440&height=1024&hide_cookie_banners=true",
+        link: "https://shozon-roy.github.io/Text-Snap/",
+        category: "AI"
+      },{
+        title: "Health Monitoring App",
+        description: "A responsive health monitoring application built with HTML, CSS, and JavaScript that provides comprehensive health tracking features.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/HealthMonitoringApp/refs/heads/main/2cb8d3e1-07e0-4bb1-a974-ae938eab.png",
+        link: "#",
+        category: "AI"
+      },
+      {
+        title: "Shozon Roy | Frontend Developer & UI/UX Designer",
+        description: "This portfolio website is designed to showcase my skills, projects, and blog posts, providing a glimpse into who I am and what I do best.",
+        image: "https://raw.githubusercontent.com/Shozon-Roy/Personal-Portfolio-Website/refs/heads/main/shozoncodelab.blogspot.com%20-%20thumbnail.jpg",
+        link: "https://shozonroy.vercel.app/",
+        category: "Personal"
+      },
+      {
+        title: "Polo SaaS Template",
+        description: "A modern, customizable SaaS layout for startups and products to launch quickly and beautifully.",
+        image: "https://i.postimg.cc/26kbSC0b/polo-j-Ee-Ud3y6-Yr-NPr1-ID9-QPFgid-Ka-Ei27-D.webp",
+        link: "#",
+        category: "Software"
+      },
+      {
+        title: "Templify Startup Kit",
+        description: "Complete startup kit with UI blocks, integrations, and everything you need to launch your next project.",
+        image: "https://i.postimg.cc/50sHHDrP/templify-WJIn-Lcd-HZ8no-Qyz2cd4-ZAcle-JJg-LYL-bin.webp",
+        link: "#",
+        category: "Software"
+      },
+      {
+    title: "Bitly Link Shortner",
+    description: "This is a simple web-based link Shortner using the Bitly API. Easily transform long URLs into short, manageable links in just one click.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/2e96f8f6f8aa5533e1fac70eb8498bf694e761326906887cd71997a58d02dd44/png?url=https%3A%2F%2Fshozon-roy.github.io%2FBitly-Link-Shortner%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://bitlyshortner.onrender.com/",
+    category: "Software"
+  },
+  {
+    title: "Shozon Roy Portfolio",
+    description: "Shozon Roy Portfolio is a modern, personal website showcasing skills, projects, and achievements. With a clean design and engaging user experience, it highlights work in web development, UI/UX design, and more.",
+    image: "https://camo.githubusercontent.com/bbe6d98144323faa6bd7ac86dd854b7e4387bb53881665650209820c0281eb3d/68747470733a2f2f692e706f7374696d672e63632f386368516235324e2f32303234313032342d3032333235382e6a7067",
+    link: "https://shozon-roy-portfolio.onrender.com",
+    category: "Personal"
+  },
+  {
+    title: "Speedometer Pro: Real-Time Speed & Location Tracker",
+    description: "Real-time speedometer design with IP tracking, using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/8b187bca09245a58a036a8fffb64ba1eee877b041b94d994ccb400057892588c/png?url=https%3A%2F%2Fshozon-roy.github.io%2FSpeedometer-Pro-Real-Time-Speed-Location-Tracker%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Speedometer-Pro-Real-Time-Speed-Location-Tracker/",
+    category: "Software"
+  },
+      {
+        title: "Sleek Product Card UI with Search and Navigation",
+        description: "This project showcases a sleek UI with a top navigation bar, search feature, and stylish product cards, ideal for modern e-commerce",
+        image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/dd64edc6eeb27713af31be10919ba129ceadf0234e26213388a2fabeb383ebfd/png?url=https%3A%2F%2Fshozon-roy.github.io%2FTop-Nav-Product-Card-with-Functional-Search-Card%2F&width=1440&height=1024&hide_cookie_banners=true",
+        link: "#",
+        category: "Commerce"
+      },
+      {
+    title: "Matrix Rain Sidebar",
+    description: "A web app with a cool matrix rain effect and an interactive sidebar for system info.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/fbe9cf2bb454d1a292b77da52c558821ee4a0cb2748e9ebe196a3b9f2cd863e0/png?url=https%3A%2F%2Fshozon-roy.github.io%2FMatrix-Rain-Sidebar-Browser-System-Info%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Matrix-Rain-Sidebar-Browser-System-Info/",
+    category: "Software"
+  },{
+    title: "Profile Card UI",
+    description: "A profile card project featuring a sci-fi style button, built with HTML, CSS, and JavaScript.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/0dbdeb536e148c90ef7ff40c3ab2daa81674f0a7bc8e71301192839d0e68c5d6/png?url=https%3A%2F%2Fshozon-roy.github.io%2FProfile-Card-Ui%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Profile-Card-Ui/",
+    category: "Personal"
+  },
+  {
+    title: "GitHub Profile Viewer",
+    description: "A simple app to view GitHub profiles by entering a username and displaying their details.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/788fcf69f6bb18d1b1fe3fbf947695d96ddbd2a917c62ace112b4ff88f81a5e5/png?url=https%3A%2F%2Fshozon-roy.github.io%2FGithub-Profile-Viewer%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Github-Profile-Viewer/",
+    category: "Software"
+  },
+  {
+    title: "Drag and Drop File Uploader",
+    description: "An intuitive uploader that allows users to drag files or browse to upload easily.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/3e204cb08e3469d9381b8f5cbd808bcfb48f3ffc8990b80b5e26cefb1a675632/png?url=https%3A%2F%2Fshozon-roy.github.io%2FDrag-and-drop-file-uploader%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Drag-and-drop-file-uploader/",
+    category: "Software"
+  },
+  {
+    title: "Random Gradient Generator",
+    description: "A web app that creates random gradients and lets users copy the CSS code.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/db1ee7900a1655590d8a316a523cc5f700835fc059e02e2a2ed46df903ec0da8/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRandom-Gradient-Generator%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Random-Gradient-Generator/",
+    category: "Software"
+  },
+  {
+    title: "RoyFlix Movie Finder",
+    description: "A movie finder website where users can search for movies and view their details.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/ed9543c01399cf29322f4f181b29324686f49462eae411324f814c1635055c70/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRoyFlix_movie_finder&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/RoyFlix_movie_finder/",
+    category: "Software"
+  },
+  {
+    title: "Shozon Roy - Developer Profile",
+    description: "A profile showcasing Shozon Roy's skills and projects in software development.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/a93a87520b504eacb705995dacb340071ea2ffa47a9bd15fe6dc1f78dc58934c/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fportfolio-short-dev-account-view-main%2F&width=1440&height=924&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/portfolio-short-dev-account-view-main/",
+    category: "Personal"
+  },
+      {
+    title: "Car Animation Remastered",
+    description: "A car animation created with SVG paths using HTML, CSS, and JavaScript.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/68659c88acbaa950ca3355b48a06555c81db6d76628cd41e2a3a674b9dcce088/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcar-animation-remasterd%2F&width=1440&height=924&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/car-animation-remasterd/",
+    category: "Animation"
+  }, 
+  {
+    title: "To-Do App With Html Css Js",
+    description: "This project is a simple To-Do application built using HTML, CSS, and JavaScript. It allows users to create and manage tasks easily.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/df050000075a1041ca03579e9ac096f780d8d58775d80e439279a5ca4f114f8c/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftodo_app_v1%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/todo_app_v1/",
+    category: "Software"
+  },
+  {
+    title: "Code Usage Authorization Notice",
+    description: "This is a simple HTML document with CSS styles, providing a notice about code authorization.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/8754d1bcfb8963171bb4663c71bad8e0cf6b30cbe734034719939f9523fe2c9a/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcode-policy-usage-auth-main%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/code-policy-usage-auth-main",
+    category: "Legal"
+  },
+  {
+    title: "Qr Code Generator",
+    description: "This is a web application that generates QR codes from user-provided text or links. It's built with HTML, CSS, and JavaScript",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/fd15c43655f3e01ab2dfc3f03d69ebf3e8ff94be5d38380cd19c78e3a631d5d3/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fqr-code-genaretor%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/qr-code-genaretor",
+    category: "Utility"
+  },
+  {
+    title: "Ai Real-Time Prank Weather Project",
+    description: "This project is a prank weather forecast application that mimics a real-time weather forecast but provides humorous and nonsensical responses instead.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/2a103d06a415b6994a1e8fcdc90cdb7d9914537f151514f2cfa221828f8451a7/png?url=https%3A%2F%2Fshozon-roy.github.io%2FAi-Real-Time-Prank-Weather-Project%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Ai-Real-Time-Prank-Weather-Project/",
+    category: "Fun"
+  },
+  {
+    title: "Temporary Email Generator",
+    description: "This is a simple web application that allows users to generate temporary email addresses for temporary use.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/a9ac6c5608c47c004a51438aee15c79ba2491ce80e333fef28ea615834e9f618/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftemporary-email-genaretor%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/temporary-email-genaretor/",
+    category: "Utility"
+  },
+  {
+    title: "Test Of an Contact Form",
+    description: "This is a test project of an html css js php contact form.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/4a53677e75e0654cbf2252dcaa8577b7c7c68d99765e5ffbb24e3a942ace92dd/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftest-contact-form%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/test-contact-form/",
+    category: "Testing"
+  },
+  {
+    title: "Personal Portfolio v2",
+    description: "Personal Portfolio v2 is a modern and responsive web application designed to showcase an individual's skills and projects.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/92c97d06ee0f288f2a6c7a36759c56afa4fff5b6cb7bccaa00f196002192a717/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fpersonal-portfolio-v2%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/personal-portfolio-v2/",
+    category: "Personal"
+  },
+  {
+    title: "Neon 404 Error Page",
+    description: "The Neon 404 Error Page is a visually striking web page designed to inform users that the requested content could not be found.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/8cc8a4985e8eb3fab8903f377ce652e82590c71064810145499e59bbd6a43770/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fneon-404-error-page%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/neon-404-error-page/",
+    category: "Error"
+  },
+  {
+    title: "Admin Dashboard Panel",
+    description: "The Admin Dashboard Panel is a powerful web application designed for managing and monitoring various aspects of a system or business.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/1c4cb899c14333e9d00676c26a6c06330bf9a38d7cdd61bc602d9e5760c2b769/png?url=https%3A%2F%2Fshozon-roy.github.io%2FAdmin-Dashord-Panel%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Admin-Dashord-Panel/",
+    category: "Admin"
+  },
+  {
+    title: "Hidden-Searcher: A Comprehensive Search Tool",
+    description: "Hidden-Searcher is a web application designed to simplify online searches while enhancing user privacy.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/dbaa8d8ae36f7f45e219b2155a9e05826ab23f111f13ec53706b2fbcb498d0cd/png?url=https%3A%2F%2Fshozon-roy.github.io%2FHidden-Searcher%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Hidden-Searcher/",
+    category: "Utility"
+  },
+  {
+    title: "Web Calculator v2",
+    description: "Web Calculator v2 is an intuitive and responsive calculator application built with HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/c7a73d9426b55d27a7d7b8b09342e803506d8c8789367cd5a9914429af280797/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcalculator-v2%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/calculator-v2/",
+    category: "Calculator"
+  },
+  {
+    title: "Simple Analog Clock",
+    description: "This project showcases a simple analog clock built using HTML, CSS, and JavaScript.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/ce18ae9332b20f08a8fce79ac9f693ae6481fa7a0c1e06f2c16e1e97ff4c71a8/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fanalog-clock%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/analog-clock/",
+    category: "Clock"
+  },
+  {
+    title: "Portfolio Card Design",
+    description: "The portfolio card is a sleek and interactive component designed using HTML, CSS, JavaScript, Bootstrap, jQuery, and Font Awesome icons.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/2b8b2eb0e858ba06ec51cac8f71b8946b835312751c0e3bd680d340e9487e198/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fshozonroy%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/shozonroy/",
+    category: "Design"
+  },
+  {
+    title: "Age Calculator",
+    description: "The Age Calculator is a simple web application built using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/1a45966a177989c9b82b11be2c1a64f6d5b7711b1dd9dfb130975e02755ff2ab/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fage-calculator%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/age-calculator/",
+    category: "Utility"
+  },
+  {
+    title: "Calculator UI",
+    description: "The Calculator UI is a simple and interactive web application built using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/f2a626e25592297b08cc4f6ee0189d31f1585dd5a5cef4f01d1d3f2d4e01268a/png?url=https%3A%2F%2Fshozon-roy.github.io%2Fcalulator-web-app%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/calulator-web-app",
+    category: "Calculator"
+  },
+  {
+    title: "Tic Tac Toe Game",
+    description: "This Tic Tac Toe game is a simple yet engaging web application built using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/c2b2f9fed1480adcdd4550c82a2c68e6de143b1136485578b5a034badf23922f/png?url=https%3A%2F%2Fshozon-roy.github.io%2Ftic-tac-toe-game%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/tic-tac-toe-game/",
+    category: "Game"
+  },
+  {
+    title: "Netflix Logo Made with HTML, CSS, JS, and Bootstrap",
+    description: "This project showcases a dynamic representation of the Netflix logo, created using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/eae8b72783d4e3a6cca14b8ca76d727f85757d7eeb464c59f97824407bca4ec1/png?url=https%3A%2F%2Fshozon-roy.github.io%2FNETFLIX-LOGO%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/NETFLIX-LOGO/",
+    category: "Design"
+  },
+  {
+    title: "Random Number Generator",
+    description: "This Random Number Generator is a simple web application built using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/872e53912719b03420e6fccb036ecd6f2dc133d03b5210922f0a4289d851764d/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRandom-Number-Generator2%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Random-Number-Generator2",
+    category: "Utility"
+  },
+  {
+    title: "Basic Text to Binary Converter",
+    description: "This project is a simple yet effective Text to Binary Converter built using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/70e9e95337a09d0f2508c4ee3718387353cbfbc94b82f61f8c5f134ee94a4514/png?url=https%3A%2F%2Fshozon-roy.github.io%2FText-to-Ascii-Converter%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Text-to-Ascii-Converter/",
+    category: "Converter"
+  },
+  {
+    title: "Neuromorphism Keyboard UI",
+    description: "The Neuromorphism Keyboard UI is a visually appealing interface designed using HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/fa24fcbb3a4abc5db1664df601715f71aa4e1c9a0fa7344eb836de4479699160/png?url=https%3A%2F%2Fshozon-roy.github.io%2FVirtual-Keyboard-re-design%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Virtual-Keyboard-re-design/",
+    category: "UI"
+  },
+  {
+    title: "Matrix Rain Effect Using HTML, CSS, JavaScript, and Bootstrap",
+    description: "The Matrix Rain effect is a visually captivating animation that mimics the iconic falling green characters from the 'Matrix' movie franchise.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/30988e3cb63091adcb3307d48e0705fcddadfa9efe13758fa5f6dd4fdc7265f6/png?url=https%3A%2F%2Fshozon-roy.github.io%2FMatrix_animation%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Matrix_animation/",
+    category: "Animation"
+  },
+  {
+    title: "Sign-Up Form Made with HTML, CSS",
+    description: "This sign-up form is a user-friendly interface designed using HTML, CSS.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/7015a7012ce14f6fca1599045f12cea6a04468290b6fc4359b95354e54c03fe5/png?url=https%3A%2F%2Fshozon-roy.github.io%2FSignUpForm%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/SignUpForm/",
+    category: "Form"
+  },
+  {
+    title: "Random 1 to 999 Number Picker",
+    description: "The 1 to 999 Number Picker is a user-friendly interface created with HTML, CSS, JavaScript, and Bootstrap.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/7045763505bf9375c33c6abde0f55a0c1b517ec37558a4c3ea382d282967bcef/png?url=https%3A%2F%2Fshozon-roy.github.io%2FRandom-Number-Generator%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/Random-Number-Generator/",
+    category: "Utility"
+  },
+  {
+    title: "Basic 404 Page",
+    description: "A basic 404 page created with HTML, CSS, JavaScript, and Bootstrap provides a user-friendly experience when a requested page cannot be found.",
+    image: "https://api.urlbox.io/v1/ca482d7e-9417-4569-90fe-80f7c5e1c781/7ee2b84d1b4ccdbd05dc1f56ca212be20ad9bc7f7decb7f8ca4b02a167f1cc7b/png?url=https%3A%2F%2Fshozon-roy.github.io%2FERROR%2F&width=1440&height=1024&hide_cookie_banners=true",
+    link: "https://shozon-roy.github.io/ERROR/",
+    category: "Error"
+  },
+      {
+        title: "",
+        description: "",
+        image: "",
+        link: "#",
+        category: "AI"
+      },
+      {
+        title: "",
+        description: "",
+        image: "",
+        link: "#",
+        category: "AI"
+      },
+      {
+        title: "Cultural Event Platform",
+        description: "Event management platform for cultural activities with ticketing, scheduling, and community features.",
+        image: "https://i.postimg.cc/50sHHDrP/templify-WJIn-Lcd-HZ8no-Qyz2cd4-ZAcle-JJg-LYL-bin.webp",
+        link: "#",
+        category: "Culture"
+      }
+    ];
+
+    let currentFilter = 'All';
+    let displayedProducts = 6;
+    const productsPerPage = 6;
+
+    // --- PRODUCT RENDERING ---
+    function createProductCard(product) {
+      return `
+        <div class="product-card" tabindex="0">
+          <img
+            class="product-card-bgimg"
+            src="${product.image}"
+            alt="${product.title}"
+            draggable="false"
+          >
+          <div class="product-card-bottom-bar">
+            <div class="product-card-info">
+              <div class="product-card-title">${product.title}</div>
+              <p class="product-card-desc">${product.description}</p>
+            </div>
+            <a href="${product.link}" class="product-card-link" target="_blank" aria-label="Visit ${product.title}">
+              <i class="bi bi-box-arrow-up-right"></i>
             </a>
-            <a href="https://www.instagram.com/shozon_roy" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://t.me/shozonroy2" target="_blank">
-                <i class="fab fa-telegram-plane"></i>
-            </a>
-            <a href="https://github.com/Shozon-Roy" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
+          </div>
         </div>
-    </footer>
- <script>
-        // Show or hide the button based on scroll position
-        window.onscroll = function() {
-            const button = document.getElementById('backToTop');
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                button.style.display = 'block';
-            } else {
-                button.style.display = 'none';
-            }
-        };
+      `;
+    }
 
-        // Scroll to top function
-        document.getElementById('backToTop').onclick = function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        };
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function showOverlay(projectBox) {
-            const overlay = projectBox.querySelector('.overlay');
-            overlay.classList.toggle('active');
-        }
+    function getFilteredProducts() {
+      if (currentFilter === 'All') {
+        return allProducts;
+      }
+      return allProducts.filter(product => product.category === currentFilter);
+    }
+
+    function renderProducts() {
+      const productGrid = document.querySelector('.product-grid');
+      const filteredProducts = getFilteredProducts();
+      const productsToShow = filteredProducts.slice(0, displayedProducts);
+      
+      productGrid.innerHTML = productsToShow.map(product => createProductCard(product)).join('');
+      
+      // Update load more button visibility
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+      const centerContainer = document.querySelector('.center-container');
+      
+      if (displayedProducts >= filteredProducts.length) {
+        centerContainer.style.display = 'none';
+      } else {
+        centerContainer.style.display = 'flex';
+      }
+    }
+
+    // --- GLASS EFFECT CONTEXT MENU LOGIC WITH ICON TOGGLE ---
+    const menuIcon = document.getElementById('menuIcon');
+    const contextMenu = document.getElementById('contextMenu');
+    const menuPopupOverlay = document.getElementById('menuPopupOverlay');
+
+    function showContextMenu() {
+      contextMenu.style.display = "flex";
+      menuPopupOverlay.classList.add('show');
+      contextMenu.focus();
+      menuIcon.classList.remove('bi-list');
+      menuIcon.classList.add('bi-x-lg');
+    }
+    function hideContextMenu() {
+      contextMenu.style.display = "none";
+      menuPopupOverlay.classList.remove('show');
+      menuIcon.classList.remove('bi-x-lg');
+      menuIcon.classList.add('bi-list');
+    }
+
+    menuIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (contextMenu.style.display === "flex") {
+        hideContextMenu();
+      } else {
+        showContextMenu();
+      }
+    });
+    menuPopupOverlay.addEventListener('click', hideContextMenu);
+
+    // ESC key closes menu popup
+    document.addEventListener('keydown', (e) => {
+      if (contextMenu.style.display === "flex" && e.key === 'Escape') {
+        hideContextMenu();
+      }
+    });
+    // Prevent click inside popup from closing
+    contextMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    window.addEventListener('resize', hideContextMenu);
+    window.addEventListener('scroll', hideContextMenu);
+
+    // --- FILTER DROPDOWN LOGIC ---
+    const filterBtn = document.getElementById('filterBtn');
+    const filterDropdown = document.getElementById('filterDropdown');
+    const filterList = document.getElementById('filterList');
+    const tabPhone = document.getElementById('tabPhone');
+    const tabDesktop = document.getElementById('tabDesktop');
+
+    // Responsive dropdown position
+    function adjustDropdown() {
+      if(window.innerWidth <= 600){
+        filterDropdown.style.minWidth = "85vw";
+        filterDropdown.style.maxWidth = "92vw";
+        filterDropdown.style.left = "0";
+        filterDropdown.style.right = "0";
+        filterDropdown.style.margin = "0 auto";
+      } else {
+        filterDropdown.style.minWidth = "220px";
+        filterDropdown.style.maxWidth = "280px";
+        filterDropdown.style.left = "0";
+        filterDropdown.style.right = "";
+        filterDropdown.style.margin = "0";
+      }
+    }
+    window.addEventListener('resize', adjustDropdown);
+    window.addEventListener('DOMContentLoaded', adjustDropdown);
+
+    // Toggle dropdown
+    filterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      filterDropdown.classList.toggle('visible');
+      const chevron = filterBtn.querySelector('.bi-chevron-down');
+      if (filterDropdown.classList.contains('visible')) {
+        chevron.style.transform = 'rotate(-180deg)';
+      } else {
+        chevron.style.transform = '';
+      }
+      adjustDropdown();
+    });
+    // Hide dropdown on click outside
+    document.addEventListener('click', (e) => {
+      if (!filterDropdown.contains(e.target) && !filterBtn.contains(e.target)) {
+        filterDropdown.classList.remove('visible');
+        filterBtn.querySelector('.bi-chevron-down').style.transform = '';
+      }
+    });
+    // Filter select logic
+    filterList.addEventListener('click', (e) => {
+      if (e.target.tagName.toLowerCase() === 'li') {
+        filterList.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
+        e.target.classList.add('selected');
         
-        document.getElementById('menuToggle').addEventListener('click', function() {
-        });
-    </script>
+        // Update current filter and reset display count
+        currentFilter = e.target.textContent;
+        displayedProducts = 6;
+        renderProducts();
+        
+        // Close dropdown
+        filterDropdown.classList.remove('visible');
+        filterBtn.querySelector('.bi-chevron-down').style.transform = '';
+      }
+    });
+    // Device Switch Tab logic
+    function setActiveTab(tab) {
+      [tabPhone, tabDesktop].forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      // Optionally trigger device view here
+    }
+    tabPhone.addEventListener('click', () => setActiveTab(tabPhone));
+    tabDesktop.addEventListener('click', () => setActiveTab(tabDesktop));
+
+    // --- LOAD MORE BUTTON LOGIC ---
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    loadMoreBtn.addEventListener('click', function() {
+      if (loadMoreBtn.classList.contains('loading')) return;
+      loadMoreBtn.classList.add('loading');
+      loadMoreBtn.disabled = true;
+      
+      setTimeout(() => {
+        const filteredProducts = getFilteredProducts();
+        displayedProducts = Math.min(displayedProducts + productsPerPage, filteredProducts.length);
+        renderProducts();
+        
+        loadMoreBtn.classList.remove('loading');
+        loadMoreBtn.disabled = false;
+      }, 1500);
+    });
+
+    // --- INITIALIZE ON PAGE LOAD ---
+    document.addEventListener('DOMContentLoaded', function() {
+      renderProducts();
+    });
+
+    // --- COPYRIGHT YEAR ---
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
